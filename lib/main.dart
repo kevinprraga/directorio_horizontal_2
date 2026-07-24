@@ -174,7 +174,7 @@ class DirectorioVertical extends StatelessWidget {
   }
 }
 
-// 5. WIDGET STATEFUL CON CAMBIO DE ICONO Y COLOR (AMARILLO Y CELESTE)
+// 5. WIDGET STATEFUL CON OPERADOR TERNARIO PARA ICONO Y COLOR
 class ItemDocente extends StatefulWidget {
   final String nombre;
   final String materia;
@@ -190,7 +190,7 @@ class ItemDocente extends StatefulWidget {
 }
 
 class _ItemDocenteState extends State<ItemDocente> {
-  // Estado para controlar la carita
+  // Estado para alternar entre feliz y triste
   bool esFeliz = true;
 
   @override
@@ -201,15 +201,15 @@ class _ItemDocenteState extends State<ItemDocente> {
       subtitle: Text(widget.materia),
       trailing: IconButton(
         icon: Icon(
-          
+          // OPERADOR TERNARIO 1: Selecciona el icono
           esFeliz
               ? Icons.sentiment_satisfied_alt
               : Icons.sentiment_dissatisfied,
-          
+          // OPERADOR TERNARIO 2: Selecciona el color (Amarillo / Celeste)
           color: esFeliz ? Colors.amber : Colors.lightBlue,
         ),
         onPressed: () {
-          
+          // Cambiamos el estado al presionar el botón
           setState(() {
             esFeliz = !esFeliz;
           });
