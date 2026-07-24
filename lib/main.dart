@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   }
 }
 
-// 2. Pantalla Principal (StatefulWidget)
+// 2. Pantalla Principal
 class DirectorioPage extends StatefulWidget {
   const DirectorioPage({super.key});
 
@@ -66,7 +66,7 @@ class _DirectorioPageState extends State<DirectorioPage> {
             ),
           ),
 
-          // Llama a la clase del directorio vertical (Expanded le da todo el alto restante)
+          // Llama a la clase del directorio vertical
           const Expanded(
             child: DirectorioVertical(),
           ),
@@ -139,49 +139,82 @@ class DirectorioVertical extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: const [
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Israel Zurita"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Israel Zurita",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Angel Novillo"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Angel Novillo",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Cecilia Naula"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Cecilia Naula",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Cecilia Naula"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Cecilia Naula",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Cecilia Naula"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Cecilia Naula",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
-        ListTile(
-          trailing: Icon(Icons.star, color: Color.fromARGB(255, 185, 194, 211)),
-          leading: Icon(Icons.person, color: Colors.blue),
-          title: Text("Ing. Cecilia Naula"),
-          subtitle: Text("Desarrollo de Aplicaciones Web"),
+        ItemDocente(
+          nombre: "Ing. Cecilia Naula",
+          materia: "Desarrollo de Aplicaciones Web",
         ),
         Divider(),
       ],
+    );
+  }
+}
+
+// 5. WIDGET STATEFUL CON CAMBIO DE ICONO Y COLOR (AMARILLO Y CELESTE)
+class ItemDocente extends StatefulWidget {
+  final String nombre;
+  final String materia;
+
+  const ItemDocente({
+    super.key,
+    required this.nombre,
+    required this.materia,
+  });
+
+  @override
+  State<ItemDocente> createState() => _ItemDocenteState();
+}
+
+class _ItemDocenteState extends State<ItemDocente> {
+  // Estado para controlar la carita
+  bool esFeliz = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: const Icon(Icons.person, color: Colors.blue),
+      title: Text(widget.nombre),
+      subtitle: Text(widget.materia),
+      trailing: IconButton(
+        icon: Icon(
+          
+          esFeliz
+              ? Icons.sentiment_satisfied_alt
+              : Icons.sentiment_dissatisfied,
+          
+          color: esFeliz ? Colors.amber : Colors.lightBlue,
+        ),
+        onPressed: () {
+          
+          setState(() {
+            esFeliz = !esFeliz;
+          });
+        },
+      ),
     );
   }
 }
